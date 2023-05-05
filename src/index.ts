@@ -36,7 +36,7 @@ export async function main(args: string[]) {
     message: 'Do you want to launch VSCode after the project is created?',
   });
 
-  const tasks = generateTasks(project);
+  const tasks = await generateTasks(project);
   await tasks.run();
 
   console.info(chalk.green(`\n\nProject "${project.name}" created successfully!\n`));
