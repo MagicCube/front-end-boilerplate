@@ -1,0 +1,37 @@
+{
+  "name": "front-end-boilerplate",
+  "version": "1.0.0",
+  "description": "Personal front-end boilerplate.",
+  "author": "Henry Li <henry1943@163.com>",
+  "keywords": [],
+  "main": "dist/index.js",
+  "bin": {
+    "boilerplate": "./bin/index.js"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production tsc",
+    "dev": "NODE_ENV=development vite-node src/index.ts",
+    "start": "NODE_ENV=production node dist/index.js"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/listr": "^0.14.4",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
+    "@vue/compiler-sfc": "^3.2.47",
+    "eslint": "^8.39.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4",
+    "vite-node": "^0.31.0",
+    "vite-tsconfig-paths": "^4.2.0"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "enquirer": "^2.3.6",
+    "execa": "^7.1.1",
+    "listr": "^0.14.3"
+  }
+}

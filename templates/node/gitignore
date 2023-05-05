@@ -1,0 +1,13 @@
+# Output
+dist
+
+# Node.js
+node_modules
+
+# temp
+*.out
+*tmp*
+
+# Environment
+.env
+.cookies
