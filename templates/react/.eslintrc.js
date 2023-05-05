@@ -7,7 +7,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
   ],
-  include: ['src/**/*'],
   rules: {
     '@typescript-eslint/consistent-type-imports': 'warn',
     '@typescript-eslint/no-empty-function': 'off',
