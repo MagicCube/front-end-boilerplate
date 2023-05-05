@@ -1,16 +1,27 @@
 import { exec } from 'child_process';
 import { prompt } from 'enquirer';
 
+import { existsTemplate } from './agents/template-agent';
 import { generateTasks } from './generate-tasks';
 import type { Project } from './types';
 
 export async function main(args: string[]) {
+  let template = 'react';
+  if (args[0].startsWith('--template=')) {
+    template = args[0].split('=')[1];
+    if (!existsTemplate(template)) {
+      console.error(`Template "${template}" not found.`);
+      process.exit(404);
+    }
+    args = args.slice(1);
+  }
+
   const { default: chalk } = await import('chalk');
 
   const projectName = args[0] || 'test-project';
   const project: Project = {
     name: projectName,
-    template: 'react',
+    template,
     rootPath: `${process.cwd()}/${projectName}`,
     author: 'Henry Li <henry1943@163.com>',
     ownerType: 'personal',
@@ -81,5 +92,5 @@ async function selectAuthor(project: Project) {
 
 const DEV_MODE = process.env.NODE_ENV === 'development';
 if (DEV_MODE) {
-  main([]);
+  main(['--template=node', 'test-project']);
 }

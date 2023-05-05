@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
@@ -5,8 +6,8 @@ import type { Project } from '@/types/Project';
 
 import { ensureDirectoryExists } from './file-system-agent';
 
-export async function renderTemplate(project: Project, templateFileName: string, targetFileName = templateFileName) {
-  const templatePath = path.resolve(__dirname, '../../templates', project.template, templateFileName);
+export async function renderTemplate(project: Project, sourceFileName: string, targetFileName = sourceFileName) {
+  const templatePath = path.resolve(getTemplatePath(project.template), sourceFileName);
   const targetPath = path.resolve(project.rootPath, targetFileName);
   const targetDir = path.dirname(targetPath);
   await ensureDirectoryExists(targetDir);
@@ -15,4 +16,13 @@ export async function renderTemplate(project: Project, templateFileName: string,
     return project[key];
   });
   await fs.writeFile(targetPath, renderedContent);
+}
+
+export function existsTemplate(template: string) {
+  const templatePath = getTemplatePath(template);
+  return existsSync(templatePath);
+}
+
+function getTemplatePath(template: string) {
+  return path.resolve(__dirname, '../../templates', template);
 }
