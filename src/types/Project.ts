@@ -1,6 +1,6 @@
 export interface Project {
   name: string;
-  template: 'react' | 'node';
+  template: string;
   rootPath: string;
   author: string;
   ownerType: 'personal' | 'bytedance';
