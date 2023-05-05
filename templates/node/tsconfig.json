@@ -6,7 +6,7 @@
     "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
-    "module": "commonjs",
+    "module": "Node16",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "outDir": "./dist",
