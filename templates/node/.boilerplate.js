@@ -10,7 +10,7 @@ module.exports = (project) => {
   return [
     ...generateTasksForTypeScript(project),
     {
-      title: 'Install Vite Node',
+      title: 'Install vite-node',
       async task() {
         await installNPM(['vite-node', 'vite-tsconfig-paths'], true);
       },
