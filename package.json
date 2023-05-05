@@ -9,7 +9,8 @@
     "boilerplate": "./bin/index.js"
   },
   "scripts": {
-    "build": "NODE_ENV=production tsc",
+    "build": "NODE_ENV=production npm run clean && tsc",
+    "clean": "rimraf dist",
     "dev": "NODE_ENV=development vite-node src/index.ts",
     "start": "NODE_ENV=production node dist/index.js"
   },
@@ -24,6 +25,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.8",
+    "rimraf": "^5.0.0",
     "typescript": "^5.0.4",
     "vite-node": "^0.31.0",
     "vite-tsconfig-paths": "^4.2.0"

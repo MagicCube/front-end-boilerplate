@@ -15,6 +15,12 @@ module.exports = (project) => {
         await installNPM(['vite-node', 'vite-tsconfig-paths'], true);
       },
     },
+    {
+      title: 'Install rimraf',
+      async task() {
+        await installNPM(['rimraf'], true);
+      },
+    },
     generateTaskForPrettier(project),
     generateTaskForESLint(project),
     {
