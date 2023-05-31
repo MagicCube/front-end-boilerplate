@@ -71,14 +71,16 @@ async function inputProjectName(project: Project) {
 }
 
 async function chooseTemplate(project: Project) {
+  const choices = [
+    { name: 'React', value: 'react' },
+    { name: 'Node.js', value: 'node' },
+  ];
   const res = await prompt<{ template: string }>({
     type: 'select',
     name: 'template',
     message: 'Choose a template to get started:',
-    choices: [
-      { name: 'React', value: 'react' },
-      { name: 'Node.js', value: 'node' },
-    ],
+    choices,
+    result: (name) => choices.find((c) => c.name === name)?.value || '',
   });
   project.template = res.template;
 }
