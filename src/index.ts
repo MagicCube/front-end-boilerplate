@@ -6,8 +6,8 @@ import { generateTasks } from './generate-tasks';
 import type { Project } from './types';
 
 export async function main(args: string[]) {
-  let template = 'react';
-  if (args[0].startsWith('--template=')) {
+  let template = '';
+  if (args[0] && args[0].startsWith('--template=')) {
     template = args[0].split('=')[1];
     if (!existsTemplate(template)) {
       console.error(`Template "${template}" not found.`);
@@ -28,6 +28,9 @@ export async function main(args: string[]) {
   };
 
   await inputProjectName(project);
+  if (!template) {
+    await chooseTemplate(project);
+  }
   await selectAuthor(project);
   const { launchVSCode } = await prompt<{ launchVSCode: boolean }>({
     type: 'confirm',
@@ -65,6 +68,19 @@ async function inputProjectName(project: Project) {
     project.name = response.name;
     project.rootPath = `${process.cwd()}/${project.name}`;
   }
+}
+
+async function chooseTemplate(project: Project) {
+  const res = await prompt<{ template: string }>({
+    type: 'select',
+    name: 'template',
+    message: 'Choose a template to get started:',
+    choices: [
+      { name: 'React', value: 'react' },
+      { name: 'Node.js', value: 'node' },
+    ],
+  });
+  project.template = res.template;
 }
 
 async function selectAuthor(project: Project) {
