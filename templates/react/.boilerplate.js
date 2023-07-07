@@ -29,7 +29,7 @@ module.exports = (project) => {
     {
       title: 'Install classnames',
       async task() {
-        await installNPM(['classnames'], true);
+        await installNPM(['classnames']);
       },
     },
     {
