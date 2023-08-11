@@ -49,7 +49,7 @@ export function generateTaskForPrettier(project: Project) {
   return {
     title: 'Setup Prettier',
     async task() {
-      await installNPM(['prettier', '@vue/compiler-sfc', '@trivago/prettier-plugin-sort-imports'], true);
+      await installNPM(['prettier@^2', '@vue/compiler-sfc', '@trivago/prettier-plugin-sort-imports'], true);
       if (project.template === 'react') {
         await installNPM(['@vitejs/plugin-react'], true);
       }
