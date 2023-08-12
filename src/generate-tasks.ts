@@ -49,7 +49,7 @@ export function generateTaskForPrettier(project: Project) {
   return {
     title: 'Setup Prettier',
     async task() {
-      await installNPM(['prettier@^2', '@vue/compiler-sfc', '@trivago/prettier-plugin-sort-imports'], true);
+      await installNPM(['prettier@^2.8.8', '@vue/compiler-sfc', '@trivago/prettier-plugin-sort-imports^4.1.1'], true);
       if (project.template === 'react') {
         await installNPM(['@vitejs/plugin-react'], true);
       }
@@ -67,8 +67,8 @@ export function generateTaskForESLint(project: Project) {
           'eslint',
           '@typescript-eslint/eslint-plugin',
           '@typescript-eslint/parser',
-          'eslint-config-prettier',
-          'eslint-plugin-prettier',
+          'eslint-config-prettier^8.8.0',
+          'eslint-plugin-prettier^4.2.1',
         ],
         true
       );
