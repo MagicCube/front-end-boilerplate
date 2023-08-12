@@ -91,7 +91,7 @@ async function chooseTemplate(project: Project) {
 
 async function enhanceReactProject(project: Project) {
   const choices = [
-    { name: 'Skip', value: '' },
+    { name: '(Skip)', value: '' },
     { name: 'Ant Design', value: 'antd @ant-design/icons' },
     { name: 'Arco Design', value: '@arco-design/web-react' },
   ];
