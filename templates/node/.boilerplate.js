@@ -1,5 +1,6 @@
 const { installNPM, renderTemplate } = require('../../dist/agents');
 const {
+  generateTaskForDependencies,
   generateTaskForESLint,
   generateTaskForGit,
   generateTaskForPrettier,
