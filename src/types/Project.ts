@@ -4,4 +4,5 @@ export interface Project {
   rootPath: string;
   author: string;
   ownerType: 'personal' | 'bytedance';
+  dependencies: string[];
 }

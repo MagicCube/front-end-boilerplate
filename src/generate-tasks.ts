@@ -90,3 +90,12 @@ export function generateTaskForGit(project: Project) {
     },
   };
 }
+
+export function generateTaskForDependencies(project: Project) {
+  return {
+    title: 'Install other dependencies',
+    async task() {
+      await installNPM(project.dependencies);
+    },
+  };
+}

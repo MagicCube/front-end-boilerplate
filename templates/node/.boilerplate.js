@@ -23,6 +23,7 @@ module.exports = (project) => {
     },
     generateTaskForPrettier(project),
     generateTaskForESLint(project),
+    generateTaskForDependencies(project),
     {
       title: 'Create Node application',
       async task() {

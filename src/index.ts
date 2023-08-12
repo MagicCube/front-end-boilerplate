@@ -25,11 +25,15 @@ export async function main(args: string[]) {
     rootPath: `${process.cwd()}/${projectName}`,
     author: 'Henry Li <henry1943@163.com>',
     ownerType: 'personal',
+    dependencies: [],
   };
 
   await inputProjectName(project);
   if (!template) {
     await chooseTemplate(project);
+    if (project.template === 'react') {
+      await enhanceReactProject(project);
+    }
   }
   await selectAuthor(project);
   const { launchVSCode } = await prompt<{ launchVSCode: boolean }>({
@@ -83,6 +87,24 @@ async function chooseTemplate(project: Project) {
     result: (name) => choices.find((c) => c.name === name)?.value || '',
   });
   project.template = res.template;
+}
+
+async function enhanceReactProject(project: Project) {
+  const choices = [
+    { name: 'Skip', value: '' },
+    { name: 'Ant Design', value: 'antd @ant-design/icons' },
+    { name: 'Arco Design', value: '@arco-design/web-react' },
+  ];
+  const res = await prompt<{ library: string }>({
+    type: 'select',
+    name: 'library',
+    message: 'Choose a component design:',
+    choices,
+    result: (name) => choices.find((c) => c.name === name)?.value || '',
+  });
+  if (res.library) {
+    project.dependencies.push(...res.library.split(' '));
+  }
 }
 
 async function selectAuthor(project: Project) {

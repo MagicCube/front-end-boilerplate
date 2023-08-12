@@ -38,6 +38,7 @@ module.exports = (project) => {
         await installNPM(['less'], true);
       },
     },
+    generateTaskForDependencies(project),
     {
       title: 'Create React application',
       async task() {
