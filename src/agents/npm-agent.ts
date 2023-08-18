@@ -6,7 +6,9 @@ export async function installNPM(packages: string | string[], dev = false) {
   if (typeof packages === 'string') {
     packages = [packages];
   }
-  await exec('pnpm', ['add', ...packages, dev ? '-D' : '']);
+  if (packages && packages.length) {
+    await exec('pnpm', ['add', ...packages, dev ? '-D' : '']);
+  }
 }
 
 export async function configNPMRegistry(project: Project) {
