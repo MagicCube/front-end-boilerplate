@@ -91,7 +91,7 @@ async function chooseTemplate(project: Project) {
 
 async function enhanceReactProject(project: Project) {
   const choices = [
-    { name: '(Skip)', value: '' },
+    { name: '(Skip)', value: 'none' },
     { name: 'Ant Design', value: 'antd @ant-design/icons' },
     { name: 'Arco Design', value: '@arco-design/web-react' },
   ];
@@ -102,7 +102,7 @@ async function enhanceReactProject(project: Project) {
     choices,
     result: (name) => choices.find((c) => c.name === name)?.value || '',
   });
-  if (res.library) {
+  if (res.library !== 'none') {
     project.dependencies.push(...res.library.split(' '));
   }
 }
