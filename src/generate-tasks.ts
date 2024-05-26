@@ -64,16 +64,16 @@ export function generateTaskForESLint(project: Project) {
     async task() {
       await installNPM(
         [
-          'eslint',
-          '@typescript-eslint/eslint-plugin@6.0.0',
-          '@typescript-eslint/parser@6.0.0',
-          'eslint-config-prettier@^8.8.0',
-          'eslint-plugin-prettier@^4.2.1',
+          'eslint@^8',
+          '@types/eslint@^8',
+          'eslint-config-next',
+          '@typescript-eslint/eslint-plugin',
+          '@typescript-eslint/parser',
         ],
         true
       );
       if (project.template === 'react') {
-        await installNPM(['eslint-plugin-react', 'eslint-plugin-react-hooks'], true);
+        await installNPM(['eslint-plugin-css-import-order'], true);
       }
       await renderTemplate(project, '.eslintrc.js');
     },

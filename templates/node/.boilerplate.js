@@ -3,7 +3,6 @@ const {
   generateTaskForDependencies,
   generateTaskForESLint,
   generateTaskForGit,
-  generateTaskForPrettier,
   generateTasksForTypeScript,
 } = require('../../dist/generate-tasks');
 
@@ -11,9 +10,15 @@ module.exports = (project) => {
   return [
     ...generateTasksForTypeScript(project),
     {
-      title: 'Install vite-node',
+      title: 'Install tsc-alias',
       async task() {
-        await installNPM(['vite-node', 'vite-tsconfig-paths'], true);
+        await installNPM(['tsc-alias'], true);
+      },
+    },
+    {
+      title: 'Install tsx',
+      async task() {
+        await installNPM(['tsx'], true);
       },
     },
     {
@@ -22,7 +27,6 @@ module.exports = (project) => {
         await installNPM(['rimraf'], true);
       },
     },
-    generateTaskForPrettier(project),
     generateTaskForESLint(project),
     generateTaskForDependencies(project),
     {

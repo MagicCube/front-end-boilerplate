@@ -1,1 +1,5 @@
-console.info('Hello, world!');
+export async function main() {
+  console.info('Hello, world');
+}
+
+main().catch(console.error);
