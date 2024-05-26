@@ -46,7 +46,9 @@ export async function main(args: string[]) {
   const tasks = await generateTasks(project);
   await tasks.run();
 
-  console.info(chalk.green(`\n\nProject "${project.name}" created successfully!\n`));
+  console.info(
+    chalk.green(`\n\nProject "${project.name}" created successfully!\n`)
+  );
 
   console.info(`Next steps:\n`);
   console.info(chalk.blue(`  cd ${project.name} && code .`));
@@ -76,8 +78,8 @@ async function inputProjectName(project: Project) {
 
 async function chooseTemplate(project: Project) {
   const choices = [
-    { name: 'React', value: 'react' },
     { name: 'Node.js', value: 'node' },
+    { name: 'React', value: 'react' },
   ];
   const res = await prompt<{ template: string }>({
     type: 'select',
