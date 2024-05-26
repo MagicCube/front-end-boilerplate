@@ -34,6 +34,7 @@ module.exports = (project) => {
       async task() {
         await renderTemplate(project, 'src/index.ts');
         await renderTemplate(project, 'bin/index.js');
+        await renderTemplate(project, '.env');
       },
     },
     generateTaskForGit(project),

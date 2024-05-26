@@ -31,9 +31,11 @@ export async function main(args: string[]) {
   await inputProjectName(project);
   if (!template) {
     await chooseTemplate(project);
-    if (project.template === 'react') {
-      await enhanceReactProject(project);
-    }
+  }
+  if (project.template === 'react') {
+    await enhanceReactProject(project);
+  } else if (project.template === 'node') {
+    project.dependencies.push('dotenv');
   }
   await selectAuthor(project);
   const { launchVSCode } = await prompt<{ launchVSCode: boolean }>({
@@ -46,9 +48,7 @@ export async function main(args: string[]) {
   const tasks = await generateTasks(project);
   await tasks.run();
 
-  console.info(
-    chalk.green(`\n\nProject "${project.name}" created successfully!\n`)
-  );
+  console.info(chalk.green(`\n\nProject "${project.name}" created successfully!\n`));
 
   console.info(`Next steps:\n`);
   console.info(chalk.blue(`  cd ${project.name} && code .`));
